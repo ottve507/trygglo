@@ -1,0 +1,36 @@
+<% layout('../layouts/layout') -%>
+<br>
+<b>Who: </b><%=post.user.username%><br>
+<b>What: </b><%=post.name%><br>
+<b>Where: </b><%=post.address%><br>
+<head>
+   <style>
+      #map {
+       height: 400px;
+       width: 100%;
+      }
+   </style>
+ </head>
+ <body>
+   <div id="map"></div>
+   <script>
+     function initMap() {
+	  	var allPosts = <%- JSON.stringify(post)%>
+		
+       var center = {lat: allPosts.latitude, lng: allPosts.longitude};
+       var map = new google.maps.Map(document.getElementById('map'), {
+         zoom: 4,
+         center: center
+       });
+       var marker = new google.maps.Marker({
+         position: center,
+         map: map
+       });
+     }
+   </script>
+   <script async defer
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ2EUjyWJ-MWpBe4omjDSfcz1o-uO-gso&callback=initMap">
+   </script>
+ </body>
+
+  

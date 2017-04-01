@@ -1,0 +1,36 @@
+<% layout('../layouts/layout') -%>
+
+  <head>
+    <style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+	  	var allPosts = <%- JSON.stringify(posts)%>
+		for (i = 0; i < allPosts.length; i++) {
+		    //alert(allPosts[i].latitude);
+		}
+		
+		
+        var center = {lat: allPosts[0].latitude, lng: allPosts[0].longitude};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: center
+        });
+        var marker = new google.maps.Marker({
+          position: center,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ2EUjyWJ-MWpBe4omjDSfcz1o-uO-gso&callback=initMap">
+    </script>
+  </body>

@@ -1,0 +1,40 @@
+<% layout('layouts/layout') -%>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script type="text/javascript">
+        var app = angular.module('MyApp', []);
+        app.controller('MyController', function($scope, $http) {
+			
+		    $scope.sub = function(tf,c) {
+				console.log(tf);
+				
+				var data_to_JSON = {
+				    to_follow: tf,
+				    current_user: c
+				};
+
+				var data = JSON.stringify(data_to_JSON);
+			
+		        $http.post('/follow',data).
+		        success(function(data) {
+		            console.log("posted successfully");
+					console.log(data);	
+		        }).error(function(data) {
+		            console.error("error in posting");
+		        })
+		    }
+		});
+</script>
+
+	<ul class="quotes">
+		<div ng-app="MyApp" ng-controller="MyController">
+		<%results.forEach(function(element){%>
+	        <% if(user.id != element.id) { %>
+				<li>
+					<%=element.username%></a> <br>
+						<button ng-click="sub('<%=element._id%>', '<%=user._id%>');">Okej</button>
+				</li>
+			<% } %>
+			<br>
+	     <%});%>
+	</div>
+	</ul>

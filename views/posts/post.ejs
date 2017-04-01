@@ -1,0 +1,23 @@
+<% layout('../layouts/layout') -%>
+<ul class="quotes">
+	<%posts.forEach(function(element){%>
+        <li>
+			<a href="/posts/<%= element._id %>">
+			<%=element.name%></a> <br>
+			<%=element.text%> <br>
+			<%=element.address%> <br>
+			<%=element.user.username  %>
+		</li>
+		<br>
+     <%});%>
+</ul>
+
+:)
+
+<% if(user) { %>
+<form action="/posts/post" method="POST">
+  <input type="text" placeholder="title" name="name">
+  <input type="text" placeholder="description" name="text">
+  <button type="submit">Submit</button>
+</form>
+<% } %>
