@@ -1,6 +1,6 @@
 # PoC
 
-Otto PoC
+Otto PoC-Trygglo
 
 ### Install
 1. git clone the project
